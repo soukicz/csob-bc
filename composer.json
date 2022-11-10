@@ -14,14 +14,14 @@
   "require": {
     "ext-soap": "*",
     "php": ">= 7.1",
-    "nette/di": "^2.4 || ~3.0.0",
     "guzzlehttp/guzzle": "^7.2",
     "ext-curl": "*",
     "ext-iconv": "*",
     "moneyphp/money": "^v3.3",
     "ext-simplexml": "*",
     "ext-libxml": "*",
-    "ext-dom": "*"
+    "ext-dom": "*",
+    "nette/utils": "^2.5.1"
   },
   "require-dev": {
     "ninjify/qa": "^0.8.0",
