@@ -60,7 +60,7 @@ final class Filter
 	public function setFileFormats(array $fileFormats): self
 	{
 		foreach ($fileFormats as $format) {
-			if (!FileFormatEnum::isValid($format)) {
+			if (!FileFormatEnum::isValid($format, false)) {
 				throw new InvalidArgumentException(sprintf('Invalid filter\'s file format %s given.', $format));
 			}
 		}
