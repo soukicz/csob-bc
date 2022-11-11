@@ -36,12 +36,18 @@ class BCSoapClient
 
 	public function getFiles(
 		?string $prevQueryTimestamp = null,
-		?Filter $filter = null
+		?Filter $filter = null,
+		int $version = 3
 	): GetDownloadFileListResponse
 	{
 		try {
 			$opts = $this->prepareGetFilesOpts($prevQueryTimestamp, $filter);
-			$resp = $this->client->GetDownloadFileList_v2($opts);
+
+			if ($version === 3) {
+				$resp = $this->client->GetDownloadFileList_v3($opts);
+			} else {
+				$resp = $this->client->GetDownloadFileList_v2($opts);
+			}
 
 			return GetDownloadFileListResponse::fromResponse($resp);
 		} catch (SoapFault $e) {

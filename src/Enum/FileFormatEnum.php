@@ -17,8 +17,22 @@ final class FileFormatEnum
 	public const XLSX_ZPS = 'XLSX ZPS';
 	public const MT101    = 'MT101';
 	public const SEPA_XML = 'SEPA_XML';
+	public const PDF = 'PDF';
+	public const TXT = 'TXT';
+	public const XML = 'XML';
+	public const BBGPC = 'BBGPC';
+	public const BBMT940 = 'BBMT940';
+	public const BBTXT = 'BBTXT';
+	public const BBBBF = 'BBBBF';
+	public const SEPAXML = 'SEPAXML';
+	public const MT942 = 'BBF';
 
-	public static function isValid(string $value): bool
+	public static function isValid(string $value, bool $import = true): bool
+	{
+		return $import ? self::validateImportFormat($value) : self::validateExportFormat($value);
+	}
+
+	private static function validateImportFormat(string $value): bool
 	{
 		return $value === self::ABO ||
 			$value === self::DUZ ||
@@ -34,4 +48,16 @@ final class FileFormatEnum
 			$value === self::SEPA_XML;
 	}
 
+	private static function validateExportFormat(string $value): bool
+	{
+		return $value === self::PDF ||
+			$value === self::TXT ||
+			$value === self::XML ||
+			$value === self::BBGPC ||
+			$value === self::BBMT940 ||
+			$value === self::BBTXT ||
+			$value === self::BBBBF ||
+			$value === self::SEPAXML ||
+			$value === self::MT942;
+	}
 }

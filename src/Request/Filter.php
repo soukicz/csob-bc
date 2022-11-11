@@ -2,6 +2,7 @@
 
 namespace AsisTeam\CSOBBC\Request;
 
+use AsisTeam\CSOBBC\Enum\FileFormatEnum;
 use AsisTeam\CSOBBC\Enum\FileTypeEnum;
 use AsisTeam\CSOBBC\Exception\Logical\InvalidArgumentException;
 use DateTimeImmutable;
@@ -11,6 +12,9 @@ final class Filter
 
 	/** @var string[]|null */
 	private $fileTypes;
+
+	/** @var string[]|null */
+	private $fileFormats;
 
 	/** @var string|null */
 	private $fileName;
@@ -44,6 +48,24 @@ final class Filter
 		}
 
 		$this->fileTypes = $fileTypes;
+
+		return $this;
+	}
+
+	public function getFileFormats(): ?array
+	{
+		return $this->fileFormats;
+	}
+
+	public function setFileFormats(array $fileFormats): self
+	{
+		foreach ($fileFormats as $format) {
+			if (!FileFormatEnum::isValid($format)) {
+				throw new InvalidArgumentException(sprintf('Invalid filter\'s file format %s given.', $format));
+			}
+		}
+
+		$this->fileFormats = $fileFormats;
 
 		return $this;
 	}
