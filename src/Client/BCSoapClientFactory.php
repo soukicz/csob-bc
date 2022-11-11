@@ -7,7 +7,7 @@ use SoapClient;
 final class BCSoapClientFactory
 {
 
-	private const WSDL = __DIR__ . '/../../cebbc-wsdl/CEBBCWS.wsdl';
+	private const WSDL = __DIR__ . '/../cebbc-wsdl/CEBBCWS.wsdl';
 	private const API_TEST = 'https://testceb-bc.csob.cz/cebbc/api';
 	private const API_PROD = 'https://ceb-bc.csob.cz/cebbc/api';
 
