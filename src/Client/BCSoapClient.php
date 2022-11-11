@@ -111,6 +111,14 @@ class BCSoapClient
 				}
 			}
 
+			// file format filter
+			if (is_array($filter->getFileFormats())) {
+				$opts['Filter']['FileFormats'] = [];
+				foreach ($filter->getFileFormats() as $fFormat) {
+					$opts['Filter']['FileFormats'][] = $fFormat;
+				}
+			}
+
 			// file name filter
 			if ($filter->getFileName() !== null) {
 				$opts['Filter']['FileName'] = $filter->getFileName();
